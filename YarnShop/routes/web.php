@@ -26,6 +26,10 @@ Route::get('/testimonial', function () {
     return view('testimonial');
 })->name('testimonial');
 
+Route::get('/customer', function () {
+    return view('customer');
+})->name('customer');
+
 ////admin
 Route::get('/admin', function () {
     return view('admin');
