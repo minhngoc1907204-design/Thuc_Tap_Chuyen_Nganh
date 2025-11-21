@@ -18,43 +18,25 @@
                         <th scope="col" style="width: 20%;">Full Name</th>
                         <th scope="col" style="width: 20%;">Email</th>
                         <th scope="col" style="width: 15%;">Phone</th>
-                        <th scope="col" style="width: 15%;">Address</th>
                         <th scope="col" style="width: 8%;">View</th>
                         <th scope="col" style="width: 8%;">Edit</th>
                         <th scope="col" style="width: 8%;">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse($customers as $object)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Nguyễn Văn A</td>
-                        <td>a.nguyen@example.com</td>
-                        <td>0901234567</td>
-                        <td>Hà Nội</td>
+                        <th scope="row">{{ $object->id }}</th>
+                        <td>{{ $object->name }}</td>
+                        <td>{{ $object->email }}</td>
+                        <td>{{ $object->phone }}</td>
                         <td><i class="fa-solid fa-eye text-info"></i></td>
                         <td><i class="fa-solid fa-pen-to-square text-warning"></i></td>
                         <td><i class="fa-solid fa-trash text-danger"></i></td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Trần Thị B</td>
-                        <td>b.tran@example.com</td>
-                        <td>0912345678</td>
-                        <td>TP. Hồ Chí Minh</td>
-                        <td><i class="fa-solid fa-eye text-info"></i></td>
-                        <td><i class="fa-solid fa-pen-to-square text-warning"></i></td>
-                        <td><i class="fa-solid fa-trash text-danger"></i></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Lê Văn C</td>
-                        <td>c.le@example.com</td>
-                        <td>0987654321</td>
-                        <td>Đà Nẵng</td>
-                        <td><i class="fa-solid fa-eye text-info"></i></td>
-                        <td><i class="fa-solid fa-pen-to-square text-warning"></i></td>
-                        <td><i class="fa-solid fa-trash text-danger"></i></td>
-                    </tr>
+                    @empty
+                        <h1>chua du lieu</h1>
+                    @endforelse
                 </tbody>
             </table>
         </div>

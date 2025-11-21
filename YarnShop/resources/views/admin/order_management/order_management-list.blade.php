@@ -15,10 +15,8 @@
                 <thead style="background-color: #343a40; color: white; font-weight: 600;">
                     <tr>
                         <th scope="col" style="width: 5%;">STT</th>
-                        <th scope="col" style="width: 15%;">Order Code</th>
-                        <th scope="col" style="width: 20%;">Customer Name</th>
-                        <th scope="col" style="width: 15%;">Order Date</th>
-                        <th scope="col" style="width: 15%;">Total</th>
+                        <th scope="col" style="width: 20%;">Customer ID</th>
+                        <th scope="col" style="width: 15%;">Total_price</th>
                         <th scope="col" style="width: 10%;">Status</th>
                         <th scope="col" style="width: 7%;">View</th>
                         <th scope="col" style="width: 7%;">Edit</th>
@@ -26,39 +24,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse($orders as $order)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>ORD-001</td>
-                        <td>Nguyễn Văn A</td>
-                        <td>2025-11-09</td>
-                        <td>2,500,000₫</td>
-                        <td><span class="badge bg-warning text-dark">Pending</span></td>
+                        <th scope="row">{{ $order->id }}</th>
+                        <td>{{ $order->customer_id }}</td>
+                        <td>{{ $order->total_price }}</td>
+                        <td>{{ $order->status }}</td>
                         <td><i class="fa-solid fa-eye text-info"></i></td>
                         <td><i class="fa-solid fa-pen-to-square text-warning"></i></td>
                         <td><i class="fa-solid fa-trash text-danger"></i></td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>ORD-002</td>
-                        <td>Trần Thị B</td>
-                        <td>2025-11-08</td>
-                        <td>1,200,000₫</td>
-                        <td><span class="badge bg-success">Completed</span></td>
-                        <td><i class="fa-solid fa-eye text-info"></i></td>
-                        <td><i class="fa-solid fa-pen-to-square text-warning"></i></td>
-                        <td><i class="fa-solid fa-trash text-danger"></i></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>ORD-003</td>
-                        <td>Lê Văn C</td>
-                        <td>2025-11-07</td>
-                        <td>3,800,000₫</td>
-                        <td><span class="badge bg-danger">Cancelled</span></td>
-                        <td><i class="fa-solid fa-eye text-info"></i></td>
-                        <td><i class="fa-solid fa-pen-to-square text-warning"></i></td>
-                        <td><i class="fa-solid fa-trash text-danger"></i></td>
-                    </tr>
+                    @empty
+                        <h1>chua du lieu</h1>
+                    @endforelse
                 </tbody>
             </table>
         </div>

@@ -62,16 +62,16 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseExamplePages">
                     <li>
-                        <a href="/admin/category">Category</a>
+                        <a href="{{ route('category') }}">Category</a>
                     </li>
                     <li>
-                        <a href="/admin/products_management">Product Management</a>
+                        <a href="{{ route('products_management') }}">Product Management</a>
                     </li>
                     <li>
-                        <a href="/admin/customer_management"> Customer management</a>
+                        <a href="{{ route('customer_management') }}"> Customer management</a>
                     </li>
                     <li>
-                        <a href="/admin/order_management"> Order management</a>
+                        <a href="{{ route('order_management') }}"> Order management</a>
                     </li>
                 </ul>
             </li>
@@ -174,8 +174,8 @@
                 </form>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                <a class="nav-link" href="{{ route('logout') }}">
+                    <i class="fa fa-fw fa-sign-out"></i>{{ __('Logout') }}</a>
             </li>
         </ul>
     </div>
@@ -208,7 +208,9 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+
+                    <a class="btn btn-primary" href="{{ route('logout') }}"> {{ __('Logout') }}>Logout
+                    </a>
                 </div>
             </div>
         </div>
