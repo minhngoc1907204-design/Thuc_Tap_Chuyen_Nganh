@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,11 @@ class OrderController extends Controller
         $this->middleware("auth");
         $orders = Order::all();
         view()->share(['orders' => $orders]);
+        view()->share("carts", Cart::all());
     }
     public function index(){
         $orders = Order::all();
-        return view("admin.order_management.order_management-list",compact("orders"));
+        $carts = Cart::all();
+        return view("admin.order_management.order_management-list",compact("orders","carts"));
     }
 }

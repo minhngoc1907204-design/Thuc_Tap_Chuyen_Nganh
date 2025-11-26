@@ -62,16 +62,19 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseExamplePages">
                     <li>
-                        <a href="{{ route('category') }}">Category</a>
+                        <a href="{{ route('admin.category.index') }}">Category</a>
                     </li>
                     <li>
-                        <a href="{{ route('products_management') }}">Product Management</a>
+                        <a href="{{ route('admin.products_management.index') }}">Product Management</a>
                     </li>
                     <li>
                         <a href="{{ route('customer_management') }}"> Customer management</a>
                     </li>
                     <li>
                         <a href="{{ route('order_management') }}"> Order management</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('test') }}"> Test</a>
                     </li>
                 </ul>
             </li>
