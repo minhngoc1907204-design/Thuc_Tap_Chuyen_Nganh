@@ -9,11 +9,15 @@ use App\Models\Product;
 use App\Models\Rating;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class RatingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public function __construct(){
+        $this->middleware("auth");
+        view()->share("ratings", Rating::all());
+    }
     public function index()
     {
         $products = Product::all();
@@ -25,27 +29,28 @@ class CommentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() {
-        $customers = Customer::all(); 
+    public function create()
+    {
+        $customers = Customer::all();
         $products = Product::all();
-        return view('admin.comment.add', compact('customers', 'products'));
+        return view("admin.rating.add",compact("customers","products"));
     }
-
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $comment = Comment::create(
+        $rating = Rating::create(
             [
                 'customer_id'=> $request->customer_id,
                 'product_id'=> $request->product_id,
-                'content'=>$request->content,
+                'score'=> $request->score,
+                'comment'=> $request->comment,
             ]
         );
-        if($comment){
-            return redirect()->route('admin.comment.index');
+        if($rating){
+            return redirect()->route('admin.products_management.index');
         }else{
             return back();
         }
@@ -54,21 +59,20 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Comment $comment)
+    public function show(string $id)
     {
-        $comments = Comment::all();
-        return view('admin.comment.show', compact('comments'));
+        $ratings = Rating::find($id);
+        return view('admin.rating.show',compact('ratings'));
     }
-
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
-        $comment = Comment::find($id);
+        $rating = Rating::find($id);
         $customers = Customer::all();
         $products = Product::all();
-        return view('admin.comment.edit', compact('comment','customers','products'));
+        return view('admin.rating.edit',compact('rating','customers','products'));
     }
 
     /**
@@ -76,19 +80,15 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comment = Comment::find($id);
-        $comment->update([
+        $rating = Rating::find($id);
+        $rating->update([
             'customer_id' => $request->customer_id,
-            'name'=> $request->name,
-            'price'=> $request->price,
-            'stock'=> $request->stock,
-            'image'=> $request->image,
-            'description'=> $request->description,
-            'status' => $request->status,
-
+            'product_id'=> $request->product_id,
+            'score'=> $request->score,
+                'comment'=> $request->comment,
         ]);
 
-        if($comment){
+        if($rating){
             return redirect()->route("admin.products_management.index");
         }
         else{
@@ -101,13 +101,13 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        $comment = Comment::find($id);
-        $comment->delete();
-        if($comment){
-            return redirect()->route("admin.comment.index");
-        }
-        else{
-            return back();
-        }
+       $rating = Rating::find($id);
+       $rating->delete();
+       if($rating){
+           return redirect()->route("admin.rating.index");
+       }
+       else{
+           return back();
+       }
     }
 }

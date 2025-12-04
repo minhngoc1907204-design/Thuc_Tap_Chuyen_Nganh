@@ -68,7 +68,7 @@
                         <a href="{{ route('admin.products_management.index') }}">Product Management</a>
                     </li>
                     <li>
-                        <a href="{{ route('customer_management') }}"> Customer management</a>
+                        <a href="{{ route('admin.customer_management.index') }}"> Customer management</a>
                     </li>
                     <li>
                         <a href="{{ route('order_management') }}"> Order management</a>

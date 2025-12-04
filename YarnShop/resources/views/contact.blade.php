@@ -1,4 +1,4 @@
-@extends('layout/home');
+@extends('layout/home')
 @section('body')
 <!-- inner page section -->
 <section class="inner_page_head">

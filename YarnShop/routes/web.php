@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\admin\AddressController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CommentController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\RatingController;
+use App\Http\Controllers\HomeController;
 use Dom\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -34,9 +37,6 @@ Route::get('/testimonial', function () {
     return view('testimonial');
 })->name('testimonial');
 
-Route::get('/customer', function () {
-    return view('customer');
-})->name('customer');
 
 ////admin
 
@@ -45,15 +45,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
     Route::resource('category',CategoryController::class);
     Route::resource('products_management',ProductController::class);
     Route::resource('comment',CommentController::class);
+    Route::resource('customer_management',CustomerController::class);
+    Route::resource('rating',RatingController::class);
+    Route::resource('address',AddressController::class);
 });
 Route::get('/admin', function () {
     return view('admin');
 })->name('admin');
 
-Route::get('/admin/customer_management', [CustomerController::class,'index'])->name('customer_management');
-
 Route::get('/admin/order_management', [OrderController::class,'index'])->name('order_management');
-
 
 
 Route::get('/admin/test', function () {

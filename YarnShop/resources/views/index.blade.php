@@ -1,4 +1,4 @@
-@extends('layout/home');
+@extends('layout/home')
 @section('body')
 <!-- slider section -->
 <section class="slider_section ">
@@ -93,7 +93,6 @@
     </div>
 </section>
 <!-- end slider section -->
-</div>
 <!-- why section -->
 <section class="why_section layout_padding">
     <div class="container">

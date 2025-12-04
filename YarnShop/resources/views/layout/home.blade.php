@@ -52,8 +52,22 @@
                         <li class="nav-item">
                            <a class="nav-link" href="/contact">Contact</a>
                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="/customer">Customer</a>
+                        <li class="nav-item dropdown"> 
+                           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">All Category <span class="caret"></span></a>
+                           <ul class="dropdown-menu">
+                              @forelse($categories as $object)
+                                 @if(isset($object->status) && $object->status == 1)
+                                    <li>
+                                          <div class="categories-bars-item">
+                                             <a href="#">{{ $object->name }}</a>
+                                             <span>(3)</span>
+                                          </div>
+                                    </li>
+                                 @endif
+                              @empty
+                                 <li><h1>Không có dữ liệu danh mục hoạt động.</h1></li>
+                              @endforelse
+                           </ul>
                         </li>
                         <li class="nav-item">
                            <a class="nav-link" href="#">

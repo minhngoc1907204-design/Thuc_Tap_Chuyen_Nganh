@@ -21,40 +21,22 @@ class ProductController extends Controller
     }
     public function index(){
         $products = Product::all();
-        $comments = Comment::all();
-        $ratings = Rating::all();
-        return view("admin.products_management.product-list",compact("products","comments","ratings"));
+        return view("admin.products_management.product-list",compact("products"));
     }
     public function create(){
         $categories = Category::all();
-        return view("admin.products_management.add", ["categories"=>$categories]);
+        return view("admin.products_management.add", compact("categories"));
     }
     public function store(Request $request){
-        $request->validate([
-            'category_id' => 'required|exists:categories,id',
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'stock' => 'required|integer',
-            'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
-            'description' => 'nullable|string',
-        ]);
-
-
-        if($request->hasFile('image')){
-                $file = $request->file('image');
-                $filename = time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path('images'), $filename);
-        }
-
         $product = Product::create(
             [
                 'category_id' => $request->category_id,
                 'name'=> $request->name,
                 'price'=> $request->price,
                 'stock'=> $request->stock,
-                'image'=> $filename ?? null,
+                'image'=> $request->image,
                 'description'=> $request->description,
-
+                'status'=> $request->status ?? 1,
             ]
         );
         if($product){
@@ -75,29 +57,15 @@ class ProductController extends Controller
     public function update(Request $request, $id){
         $product = Product::find($id);
         $product->update([
+            'category_id' => $request->category_id,
             'name'=> $request->name,
             'price'=> $request->price,
             'stock'=> $request->stock,
+            'image'=> $request->image,
             'description'=> $request->description,
-            'category_id' => $request->category_id,
+            'status' => $request->status,
 
         ]);
-
-        if($request->hasFile('image')){
-            if ($product->image && file_exists(public_path('images/' . $product->image))) {
-            unlink(public_path('images/' . $product->image));
-        }
-
-        // Lưu ảnh mới
-        $file = $request->file('image');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $file->move(public_path('images'), $filename);
-
-        // Cập nhật tên ảnh
-        $product->image = $filename;
-        }
-        
-        $product->save();
 
         if($product){
             return redirect()->route("admin.products_management.index");
