@@ -19,10 +19,22 @@ class ProductController extends Controller
         view()->share("comments", Comment::all());
         view()->share("ratings", Rating::all());
     }
-    public function index(){
-        $products = Product::all();
-        return view("admin.products_management.product-list",compact("products"));
+    public function index(Request $request)
+    {
+        $query = Product::with('category');
+
+        if ($request->search) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+            if ($request->status !== null && $request->status !== '') {
+            $query->where('status', $request->status);
+        }
+
+        $products = $query->get();
+
+        return view("admin.products_management.product-list", compact("products"));
     }
+
     public function create(){
         $categories = Category::all();
         return view("admin.products_management.add", compact("categories"));

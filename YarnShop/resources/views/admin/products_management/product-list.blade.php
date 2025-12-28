@@ -9,7 +9,32 @@
   </div>
 
   <div class="card-body bg-light">
-      <div class="table-responsive">
+    <form action="{{ route('admin.products_management.index') }}" method="GET" class="mb-3 d-flex gap-2">
+        <input type="text"
+              name="search"
+              class="form-control"
+              style="max-width: 1000px"
+              placeholder="Tìm theo tên sản phẩm..."
+              value="{{ request('search') }}">
+
+        <select name="status" class="form-select" style="max-width: 180px">
+            <option value="">-- Tất cả trạng thái --</option>
+            <option value="1" {{ request('status') === '1' ? 'selected' : '' }}>
+                Hiển thị
+            </option>
+            <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>
+                Ẩn
+            </option>
+        </select>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-search"></i>
+        </button>
+        <a href="{{ route('admin.products_management.index') }}" class="btn btn-secondary">
+            Reset
+        </a>
+    </form>
+    <div class="table-responsive">
           <table class="table table-bordered table-hover text-center align-middle"> 
               <thead class="table-primary text-dark">
                  <tr>
@@ -49,7 +74,7 @@
                         @endif
                     </td>
                       <td>{{ $object->description }}</td>
-                      <td><i class="fa-solid fa-eye text-info"></i></td>
+                      <td><a href="{{ route('admin.products_management.show', $object->id) }}"><i class="fa-solid fa-eye text-info"></i></a></td>
                       <td><a href="{{ route('admin.products_management.edit',['products_management'=>$object->id]) }}" class="fa-solid fa-pen-to-square text-warning"></a>
                       </td>
                       <td><a href="{{route('admin.products_management.destroy',['products_management'=>$object->id])}}" title="Delete {{$object->name}}" onclick="event.preventDefault();window.confirm('Bạn đã chắc chắn xóa '+ '{{$object->name}}' +' chưa?') ?document.getElementById('products_management-delete-{{ $object->id }}').submit() :0;" class="fa-solid fa-trash text-danger"></i>
@@ -63,7 +88,6 @@
                     @empty
                         <h1>chua du lieu</h1>
                     @endforelse
-              </tbody>
               </tbody>
           </table>
       </div>

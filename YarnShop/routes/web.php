@@ -1,41 +1,47 @@
 <?php
 
+use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\AddressController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\CartsController as AdminCartsController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CommentController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\RatingController;
+use App\Http\Controllers\admin\CartsController;
+use App\Http\Controllers\admin\ContactController;
+use App\Http\Controllers\admin\OrderItemController;
 use App\Http\Controllers\HomeController;
 use Dom\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class,'index'])->name('home');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+Route::get('/user-login', [HomeController::class, 'showLogin'])->name('user.login.form');
+Route::post('/user-login', [HomeController::class, 'loginUser'])->name('user.login');
+Route::get('/user-register', [HomeController::class, 'showRegister'])->name('user.register.form');
+Route::post('/user-register', [HomeController::class, 'registerUser'])->name('user.register');
+Route::get('/user-logout', [HomeController::class, 'logoutUser'])->name('user.logout');
 
-Route::get('/blog_list', function () {
-    return view('blog_list');
-})->name('blog_list');
+Route::get('/category_product/{category}', [App\Http\Controllers\HomeController::class,'category_product'])->name('category_product');
+Route::get('/category_product/single_product/{category}', [App\Http\Controllers\HomeController::class,'single_product'])->name('single_product');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::post('/contact', [HomeController::class, 'contactSubmit'])->name('contact.submit');
+Route::get('/product', [App\Http\Controllers\HomeController::class,'product'])->name('product');
+Route::get('/product/{id}', [App\Http\Controllers\HomeController::class,'single_product'])->name('single_product');
+Route::get('/cart', [HomeController::class, 'cart'])->name('cart.index');
+Route::get('/cart/add/{id}', [HomeController::class, 'addToCart'])->name('cart.add');
+Route::delete('/cart/remove/{id}', [HomeController::class, 'removeFromCart'])->name('cart.remove');
+Route::put('/cart/update/{id}', [HomeController::class, 'updateCart'])->name('cart.update');
+Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+Route::post('/checkout', [HomeController::class, 'processCheckout'])->name('checkout.process');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::get('/my-order/{id}', [HomeController::class, 'myOrder'])->name('order.view');
 
-Route::get('/product', function () {
-    return view('product');
-})->name('product');
-
-Route::get('/testimonial', function () {
-    return view('testimonial');
-})->name('testimonial');
 
 
 ////admin
@@ -48,18 +54,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
     Route::resource('customer_management',CustomerController::class);
     Route::resource('rating',RatingController::class);
     Route::resource('address',AddressController::class);
+    Route::resource('order_management',OrderController::class);
+    Route::resource('carts',CartsController::class);
+    Route::resource('about',AboutController::class);
+    Route::resource('contact',ContactController::class);
+    Route::get('contact/{id}/reply', [ContactController::class, 'reply'])->name('contact.reply');
+    Route::post('contact/{id}/reply', [ContactController::class, 'sendReply'])->name('contact.sendReply');
 });
-Route::get('/admin', function () {
-    return view('admin');
+Route::get('/admin', action: function () {
+    return view('admin.admin');
 })->name('admin');
-
-Route::get('/admin/order_management', [OrderController::class,'index'])->name('order_management');
-
-
-Route::get('/admin/test', function () {
-    return view('admin/test/test-list');
-})->name('test');
-
 Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

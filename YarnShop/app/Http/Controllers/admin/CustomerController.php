@@ -17,7 +17,7 @@ class CustomerController extends Controller
         $customers = Customer::all();
         $addresses = Address::all();
         view()->share(['customers' => $customers]);
-        view()->share(['adresses'=> $addresses]);
+        view()->share(['addresses'=> $addresses]);
 
     }
     public function index(){
@@ -28,7 +28,7 @@ class CustomerController extends Controller
     public function create(){
         $customers = Customer::all();
         $addresses = Address::all();
-        return view("admin.customer_management.add",compact("customers","adresses"));   
+        return view("admin.customer_management.add",compact("customers","addresses"));   
     }
     public function store(Request $request){
         $customer = Customer::create(

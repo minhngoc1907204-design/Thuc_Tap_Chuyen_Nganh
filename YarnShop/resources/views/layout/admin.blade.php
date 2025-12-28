@@ -29,32 +29,11 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/admin">
                     <i class="fa fa-fw fa-dashboard"></i>
                     <span class="nav-link-text">Dashboard</span>
                 </a>
             </li>
-
-<!--            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">-->
-<!--                <a class="nav-link" href="tables.html">-->
-<!--                    <i class="fa fa-fw fa-table"></i>-->
-<!--                    <span class="nav-link-text">Tables</span>-->
-<!--                </a>-->
-<!--            </li>-->
-<!--            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">-->
-<!--                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">-->
-<!--                    <i class="fa fa-fw fa-wrench"></i>-->
-<!--                    <span class="nav-link-text">Components</span>-->
-<!--                </a>-->
-<!--                <ul class="sidenav-second-level collapse" id="collapseComponents">-->
-<!--                    <li>-->
-<!--                        <a href="navbar.html">Navbar</a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="cards.html">Cards</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </li>-->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-file"></i>
@@ -71,10 +50,13 @@
                         <a href="{{ route('admin.customer_management.index') }}"> Customer management</a>
                     </li>
                     <li>
-                        <a href="{{ route('order_management') }}"> Order management</a>
+                        <a href="{{ route('admin.order_management.index') }}"> Order management</a>
                     </li>
                     <li>
-                        <a href="{{ route('test') }}"> Test</a>
+                        <a href="{{ route('admin.about.index') }}"> About Yarn</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.contact.index') }}"> Contact</a>
                     </li>
                 </ul>
             </li>
@@ -190,7 +172,7 @@
     <footer class="sticky-footer">
         <div class="container">
             <div class="text-center">
-                <small>Copyright © Your Website 2017</small>
+                <small>Copyright © YarnShop Website 2025</small>
             </div>
         </div>
     </footer>

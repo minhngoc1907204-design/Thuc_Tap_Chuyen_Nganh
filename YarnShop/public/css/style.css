@@ -1124,3 +1124,108 @@ form input[type="submit"]:focus {
 /* https://template.hasthemes.com/noraure/noraure/index.html */
 /* https://preview.hasthemes.com/xoss-preview/xoss/index.html */
 
+
+/* Nút chung */
+.btn1, .btn2 {
+    display: inline-block;
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Thêm vào giỏ */
+.btn1 {
+    background-color: #ffc107;   /* vàng */
+    color: #000;
+    border: 1px solid #e0a800;
+}
+
+.btn1:hover {
+    background-color: #e0a800;   /* vàng đậm */
+    color: #000;
+}
+
+/* Mua ngay */
+.btn2 {
+    background-color: #ff9800;   /* cam vàng */
+    color: #fff;
+    border: 1px solid #f57c00;
+    margin-left: 10px;
+}
+
+.btn2:hover {
+    background-color: #f57c00;
+    color: #fff;
+}
+
+/* ===== FEATURED SLIDER ===== */
+
+.featured-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.featured-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.featured-track {
+    display: flex;
+    transition: transform 0.4s ease;
+}
+
+.featured-item {
+    flex: 0 0 calc(100% / 3); /* 3 sản phẩm hiển thị */
+    padding: 10px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.nav-btn:hover {
+    color: #28a745;
+}
+
+.navbar-nav {
+    align-items: center;
+}
+
+.navbar-nav .nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav span,
+.navbar-nav a {
+    white-space: nowrap;
+}
+
+.product_section .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product_section .col-sm-6.col-md-4.col-lg-3 {
+    display: flex;
+}
+
+.product_section .box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product_section .box .detail-box {
+    flex-direction: column;
+    align-items: center;
+}

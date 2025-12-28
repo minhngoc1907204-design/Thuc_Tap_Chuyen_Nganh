@@ -13,13 +13,13 @@
       <link rel="shortcut icon" href="images/favicon.png" type="">
       <title>Yarn shop</title>
       <!-- bootstrap core css -->
-      <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
       <!-- font awesome style -->
-      <link href="css/font-awesome.min.css" rel="stylesheet" />
+      <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
       <!-- Custom styles for this template -->
-      <link href="css/style.css" rel="stylesheet" />
+      <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
       <!-- responsive style -->
-      <link href="css/responsive.css" rel="stylesheet" />
+      <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
    </head>
    <body>
       <div class="hero_area">
@@ -27,7 +27,7 @@
          <header class="header_section">
             <div class="container">
                <nav class="navbar navbar-expand-lg custom_nav-container ">
-                  <a class="navbar-brand" href="/"><img width="200" src="images/logo.png" alt="#" /></a>
+                  <a class="navbar-brand" href="/"><img width="140" src="{{ asset('images/logo.png') }}" alt="#" /></a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class=""> </span>
                   </button>
@@ -36,18 +36,14 @@
                         <li class="nav-item active">
                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
-                       <li class="nav-item dropdown">
-                           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Pages <span class="caret"></span></a>
-                           <ul class="dropdown-menu">
-                              <li><a href="/about">About</a></li>
-                              <li><a href="/testimonial">Testimonial</a></li>
-                           </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">About</a>
                         </li>
                         <li class="nav-item">
                            <a class="nav-link" href="/product">Products</a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link" href="/blog_list">Blog</a>
+                           <a class="nav-link" href="{{ route('single_product', 1) }}">Single Page</a>
                         </li>
                         <li class="nav-item">
                            <a class="nav-link" href="/contact">Contact</a>
@@ -55,81 +51,49 @@
                         <li class="nav-item dropdown"> 
                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">All Category <span class="caret"></span></a>
                            <ul class="dropdown-menu">
-                              @forelse($categories as $object)
-                                 @if(isset($object->status) && $object->status == 1)
+                              @forelse($categories as $object)                                 
                                     <li>
                                           <div class="categories-bars-item">
-                                             <a href="#">{{ $object->name }}</a>
+                                             <a href="{{ route('category_product', ['category' => $object->id]) }}">{{ $object->name }}</a>
                                              <span>(3)</span>
                                           </div>
-                                    </li>
-                                 @endif
+                                    </li>                              
                               @empty
                                  <li><h1>Không có dữ liệu danh mục hoạt động.</h1></li>
                               @endforelse
                            </ul>
                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="#">
-                              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
-                                 <g>
-                                    <g>
-                                       <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                                          c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                                    </g>
-                                 </g>
-                                 <g>
-                                    <g>
-                                       <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                                          C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                                          c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                                          C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                                    </g>
-                                 </g>
-                                 <g>
-                                    <g>
-                                       <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                                          c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                                    </g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                                 <g>
-                                 </g>
-                              </svg>
+                        <li class="nav-item d-flex align-items-center">
+                           @if(session('customer'))
+                              <span class="mr-1">
+                                 {{ session('customer.name') }}
+                              </span>
+                              <span class="mx-1">|</span>
+                              <a href="{{ route('user.logout') }}" class="nav-link p-0 text-primary">
+                                 Đăng xuất
+                              </a>
+                           @else
+                              <a href="{{ route('user.login.form') }}" class="nav-link p-0 mr-2">
+                                 Đăng nhập
+                              </a>
+                              <span class="mx-1">|</span>
+                              <a href="{{ route('user.register.form') }}" class="nav-link p-0">
+                                 Đăng ký
+                              </a>
+                           @endif
+                        </li>
+                                                                        
+                        <li class="nav-item d-flex align-items-center mr-3">
+                           <a class="nav-link p-0" href="{{ route('cart.index') }}">
+                              <i class="fa fa-shopping-cart"></i>
                            </a>
                         </li>
-                        <form class="form-inline">
-                           <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                           <i class="fa fa-search" aria-hidden="true"></i>
+
+                        <li class="nav-item d-flex align-items-center">
+                           <button class="btn nav_search-btn p-0">
+                              <i class="fa fa-search"></i>
                            </button>
-                        </form>
+                        </li>
                      </ul>
                   </div>
                </nav>
@@ -145,12 +109,12 @@
                <div class="col-md-4">
                    <div class="full">
                       <div class="logo_footer">
-                        <a href="#"><img width="210" src="images/logo.png" alt="#" /></a>
+                        <a href="#"><img width="210" src="{{ asset('images/logo.png') }}" alt="#" /></a>
                       </div>
                       <div class="information_f">
-                        <p><strong>ADDRESS:</strong> 28 White tower, Street Name New York City, USA</p>
-                        <p><strong>TELEPHONE:</strong> +91 987 654 3210</p>
-                        <p><strong>EMAIL:</strong> yourmain@gmail.com</p>
+                        <p><strong>ADDRESS:</strong> 180 Cao Lỗ , Phường 4 , Quận 8 , TPHCM</p>
+                        <p><strong>TELEPHONE:</strong> +84 866 496 437</p>
+                        <p><strong>EMAIL:</strong> minhngoc1907204@gmail.com</p>
                       </div>
                    </div>
                </div>
@@ -162,12 +126,12 @@
                      <div class="widget_menu">
                         <h3>Menu</h3>
                         <ul>
-                           <li><a href="#">Home</a></li>
-                           <li><a href="#">About</a></li>
-                           <li><a href="#">Services</a></li>
-                           <li><a href="#">Testimonial</a></li>
-                           <li><a href="#">Blog</a></li>
-                           <li><a href="#">Contact</a></li>
+                           <li><a href="{{ route('home') }}">Home</a></li>
+                           <li><a href="{{ route('about') }}">About</a></li>
+                           <li><a href="{{ route('product',1) }}">Products</a></li>
+                           <li><a href="{{ route('single_product',1) }}">Single Product</a></li>
+                           <li><a href="{{ route('contact') }}">Contact</a></li>
+                           <li><a href="{{ route('category_product', ['category' => $object->id]) }}">All Category</a></li>
                         </ul>
                      </div>
                   </div>
@@ -218,12 +182,47 @@
          </p>
       </div>
       <!-- jQery -->
-      <script src="js/jquery-3.4.1.min.js"></script>
+      <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
       <!-- popper js -->
-      <script src="js/popper.min.js"></script>
+      <script src="{{ asset('js/popper.min.js') }}"></script>
       <!-- bootstrap js -->
-      <script src="js/bootstrap.js"></script>
+      <script src="{{ asset('js/bootstrap.js') }}"></script>
       <!-- custom js -->
-      <script src="js/custom.js"></script>
+      <script src="{{ asset('js/custom.js') }}"></script>
+      <script>
+         let currentIndex = 0;
+         const itemsPerView = 3;
+
+         function slideRight() {
+            const items = document.querySelectorAll('.featured-item');
+            const maxIndex = items.length - itemsPerView;
+
+            if (currentIndex >= maxIndex) {
+               currentIndex = 0; // quay về đầu
+            } else {
+               currentIndex++;
+            }
+            updateSlide();
+         }
+
+         function slideLeft() {
+            const items = document.querySelectorAll('.featured-item');
+            const maxIndex = items.length - itemsPerView;
+
+            if (currentIndex <= 0) {
+               currentIndex = maxIndex; // nhảy về cuối
+            } else {
+               currentIndex--;
+            }
+            updateSlide();
+         }
+
+         function updateSlide() {
+            const itemWidth = document.querySelector('.featured-item').offsetWidth;
+            document.getElementById('featuredTrack').style.transform =
+               `translateX(-${currentIndex * itemWidth}px)`;
+         }
+         </script>
+
    </body>
 </html>
